@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>  
+    </h:head>  
+    <h:body>
+        <h2>Welcome!</h2>
+        <h:form>
+            <p:outputLabel value="Please enter your name: " />
+            <p:inputText value="#{lk1mb.name}" />
+            <!-- <p:commandButton value="Show Welcome Note" action="welcome" type="submit" /> -->
+            <p:commandButton value="Welcome note" process="@all" update="@all">
+                <p:ajax update="output" />
+            </p:commandButton>
+            <h2>
+                <h:outputText id="output" value="#{lk1mb.sayWelcome}" />
+            </h2>
+        </h:form>
+        <hr/>
+        <hr/>
+        <h3>Ajax Perform backend operation</h3>
+        <h:form>
+            <p:outputLabel value="Please enter an amount to calculate your taxes: " />
+            <p:inputText value="#{lk1mb.userCurrAmount}" />
+            <p:commandButton value="Check Taxes" process="@all" update="@all">
+                <p:ajax update="@([id$=output2])" listener="#{lk1mb.calTaxes}" />
+            </p:commandButton>
+            <h2>
+                <h:outputText id="output2" value="#{lk1mb.dispNewAmount}" />
+            </h2>
+        </h:form>
+        <h3>Accordion Panel</h3>
+        <p:accordionPanel>
+            <p:tab title="Tab1">
+                <h:outputText value="Tab1 content1" />
+                <br/>
+                <h:outputText value="Tab1 content2" />
+            </p:tab>
+            <p:tab title="Tab2">
+                <h:outputText value="Tab2 content1" />
+            </p:tab>
+        </p:accordionPanel>
+        <hr/>
+    </h:body>
+</html>
+
